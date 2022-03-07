@@ -15,10 +15,12 @@ trap cleanup SIGINT
 
 while true
 do
-	echo -n "a72 freq: "
-        cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq
-	echo -n "temp: "
-        cat /sys/devices/virtual/thermal/thermal_zone0/temp
+        echo -n "A72 "
+        vcgencmd measure_clock arm
+        echo -n "A72 "
+        vcgencmd measure_temp
+        echo -n ""
+		vcgencmd get_throttled
         echo ""
         sleep 1
 done
